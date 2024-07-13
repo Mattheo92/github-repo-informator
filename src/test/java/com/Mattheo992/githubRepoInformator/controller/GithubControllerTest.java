@@ -1,7 +1,7 @@
-package com.Mattheo992.github_repo_informator.controller;
+package com.Mattheo992.githubRepoInformator.controller;
 
-import com.Mattheo992.github_repo_informator.model.RepositoryDetails;
-import com.Mattheo992.github_repo_informator.service.GithubRepositoryService;
+import com.Mattheo992.githubRepoInformator.model.RepositoryDetails;
+import com.Mattheo992.githubRepoInformator.service.GithubRepositoryService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;

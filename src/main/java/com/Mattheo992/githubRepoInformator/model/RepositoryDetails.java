@@ -1,7 +1,8 @@
-package com.Mattheo992.github_repo_informator.model;
+package com.Mattheo992.githubRepoInformator.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 @AllArgsConstructor

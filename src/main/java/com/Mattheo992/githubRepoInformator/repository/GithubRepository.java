@@ -1,14 +1,17 @@
-package com.Mattheo992.github_repo_informator.repository;
+package com.Mattheo992.githubRepoInformator.repository;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.AllArgsConstructor;
+import lombok.Data;
 import lombok.Getter;
-import org.springframework.stereotype.Repository;
+import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
 
-
+@AllArgsConstructor
+@NoArgsConstructor
+@Data
 @Getter
-@Repository
 public class GithubRepository {
 
 

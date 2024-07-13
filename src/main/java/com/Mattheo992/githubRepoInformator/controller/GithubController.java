@@ -1,7 +1,7 @@
-package com.Mattheo992.github_repo_informator.controller;
+package com.Mattheo992.githubRepoInformator.controller;
 
-import com.Mattheo992.github_repo_informator.service.GithubRepositoryService;
-import com.Mattheo992.github_repo_informator.model.RepositoryDetails;
+import com.Mattheo992.githubRepoInformator.service.GithubRepositoryService;
+import com.Mattheo992.githubRepoInformator.model.RepositoryDetails;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;

@@ -1,8 +1,8 @@
-package com.Mattheo992.github_repo_informator.service;
+package com.Mattheo992.githubRepoInformator.service;
 
-import com.Mattheo992.github_repo_informator.repository.GithubRepository;
-import com.Mattheo992.github_repo_informator.client.GithubClient;
-import com.Mattheo992.github_repo_informator.model.RepositoryDetails;
+import com.Mattheo992.githubRepoInformator.repository.GithubRepository;
+import com.Mattheo992.githubRepoInformator.client.GithubClient;
+import com.Mattheo992.githubRepoInformator.model.RepositoryDetails;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -14,14 +14,13 @@ public class GithubRepositoryService {
 
     public RepositoryDetails getRepositoryDetails(String owner, String repo) {
         GithubRepository githubRepository = githubClient.getRepository(owner, repo);
-        String formattedDate = githubRepository.getCreatedAt().toString();
 
         RepositoryDetails details = new RepositoryDetails();
         details.setFullName(githubRepository.getFullName());
         details.setDescription(githubRepository.getDescription());
         details.setCloneUrl(githubRepository.getCloneUrl());
         details.setStars(githubRepository.getStars());
-        details.setCreatedAt(formattedDate);
+        details.setCreatedAt(githubRepository.getCreatedAt().toString());
 
         return details;
     }

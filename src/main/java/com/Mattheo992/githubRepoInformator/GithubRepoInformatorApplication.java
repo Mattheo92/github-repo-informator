@@ -1,4 +1,4 @@
-package com.Mattheo992.github_repo_informator;
+package com.Mattheo992.githubRepoInformator;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
