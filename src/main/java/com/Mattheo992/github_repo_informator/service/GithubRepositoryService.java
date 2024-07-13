@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
+import java.time.Instant;
 
 
 @Service
@@ -19,11 +20,7 @@ public class GithubRepositoryService {
 
     public RepositoryDetails getRepositoryDetails(String owner, String repo) {
         GithubRepository githubRepository = githubClient.getRepository(owner, repo);
-
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-
-        LocalDateTime createdAtDateTime = githubRepository.getCreatedAt().toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime();
-        String formattedDate = createdAtDateTime.format(formatter);
+        String formattedDate = githubRepository.getCreatedAt().toString();
 
         RepositoryDetails details = new RepositoryDetails();
         details.setFullName(githubRepository.getFullName());

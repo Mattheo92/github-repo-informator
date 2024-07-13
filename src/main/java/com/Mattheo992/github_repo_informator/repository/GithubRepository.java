@@ -4,7 +4,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Getter;
 import org.springframework.stereotype.Repository;
 
-import java.util.Date;
+import java.time.LocalDateTime;
+
 
 @Getter
 @Repository
@@ -24,5 +25,5 @@ public class GithubRepository {
     private int stars;
 
     @JsonProperty("created_at")
-    private Date createdAt;
+    private LocalDateTime createdAt;
 }
