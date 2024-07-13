@@ -3,6 +3,7 @@ package com.Mattheo992.githubRepoInformator.service;
 import com.Mattheo992.githubRepoInformator.client.GithubClient;
 import com.Mattheo992.githubRepoInformator.model.RepositoryDetails;
 import com.Mattheo992.githubRepoInformator.repository.GithubRepository;
+import feign.FeignException;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -30,15 +31,14 @@ public class GithubRepositoryServiceTest {
     @Test
     public void testGetRepositoryDetails_PositiveCase() {
 
-        String owner = "octocat";
-        String repositoryName = "Hello-World";
+        String owner = "tymon";
+        String repositoryName = "test";
         GithubRepository mockGithubRepository = new GithubRepository();
-        mockGithubRepository.setFullName("octocat/Hello-World");
+        mockGithubRepository.setFullName("tymon/test");
         mockGithubRepository.setDescription("My first repository on GitHub");
-        mockGithubRepository.setCloneUrl("https://github.com/octocat/Hello-World.git");
+        mockGithubRepository.setCloneUrl("https://github.com/tymon/test.git");
         mockGithubRepository.setStars(100);
         mockGithubRepository.setCreatedAt(LocalDateTime.parse("2020-01-01T12:00"));
-
 
         Mockito.when(githubClient.getRepository(owner, repositoryName))
                 .thenReturn(mockGithubRepository);
@@ -46,10 +46,24 @@ public class GithubRepositoryServiceTest {
         RepositoryDetails result = githubRepositoryService.getRepositoryDetails(owner, repositoryName);
 
         Assertions.assertNotNull(result);
-        Assertions.assertEquals("octocat/Hello-World", result.getFullName());
+        Assertions.assertEquals("tymon/test", result.getFullName());
         Assertions.assertEquals("My first repository on GitHub", result.getDescription());
-        Assertions.assertEquals("https://github.com/octocat/Hello-World.git", result.getCloneUrl());
+        Assertions.assertEquals("https://github.com/tymon/test.git", result.getCloneUrl());
         Assertions.assertEquals(100, result.getStars());
         Assertions.assertEquals("2020-01-01T12:00", result.getCreatedAt());
+    }
+
+    @Test
+    public void testGetRepositoryDetails_RepositoryNotFound() {
+
+        String owner = "tymon";
+        String repositoryName = "nonexistent-repo";
+
+        Mockito.when(githubClient.getRepository(owner, repositoryName))
+                .thenThrow(FeignException.NotFound.class);
+
+        Assertions.assertThrows(FeignException.NotFound.class, () -> {
+            githubRepositoryService.getRepositoryDetails(owner, repositoryName);
+        });
     }
 }
