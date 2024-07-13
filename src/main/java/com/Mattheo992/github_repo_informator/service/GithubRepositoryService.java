@@ -1,5 +1,8 @@
-package com.Mattheo992.github_repo_informator;
+package com.Mattheo992.github_repo_informator.service;
 
+import com.Mattheo992.github_repo_informator.repository.GithubRepository;
+import com.Mattheo992.github_repo_informator.client.GithubClient;
+import com.Mattheo992.github_repo_informator.model.RepositoryDetails;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 

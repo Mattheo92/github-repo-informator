@@ -1,5 +1,6 @@
-package com.Mattheo992.github_repo_informator;
+package com.Mattheo992.github_repo_informator.client;
 
+import com.Mattheo992.github_repo_informator.repository.GithubRepository;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;

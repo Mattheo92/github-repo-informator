@@ -1,5 +1,7 @@
-package com.Mattheo992.github_repo_informator;
+package com.Mattheo992.github_repo_informator.controller;
 
+import com.Mattheo992.github_repo_informator.model.RepositoryDetails;
+import com.Mattheo992.github_repo_informator.service.GithubRepositoryService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -24,14 +26,8 @@ public class GithubControllerTest {
     @MockBean
     GithubRepositoryService githubRepositoryService;
 
-    @MockBean
-    RepositoryDetails repositoryDetails;
-
-    @MockBean
-    GithubRepository githubRepository;
-
     @Test
-    public void testGetRepositoryDetails() throws Exception {
+    public void GetRepositoryDetails_RepositoryExists_DetailsReturned() throws Exception {
 
         RepositoryDetails repositoryDetails1 = new RepositoryDetails();
         repositoryDetails1.setFullName("Mattheo992/MedicalClinic");

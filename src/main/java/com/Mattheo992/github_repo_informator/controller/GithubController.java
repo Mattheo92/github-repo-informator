@@ -1,5 +1,7 @@
-package com.Mattheo992.github_repo_informator;
+package com.Mattheo992.github_repo_informator.controller;
 
+import com.Mattheo992.github_repo_informator.service.GithubRepositoryService;
+import com.Mattheo992.github_repo_informator.model.RepositoryDetails;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
@@ -20,10 +22,10 @@ public class GithubController {
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Successfully returned repository details"),
             @ApiResponse(responseCode = "404", description = "Repository not found")})
-    @GetMapping("/{owner}/{repositoryName}")
+    @GetMapping("/{owner}/{repositoryname}")
     public RepositoryDetails getRepositoryDetails(
             @PathVariable("owner") String owner,
-            @PathVariable("repositoryName") String repositoryName) {
+            @PathVariable("repositoryname") String repositoryName) {
         return githubRepositoryService.getRepositoryDetails(owner, repositoryName);
     }
 }

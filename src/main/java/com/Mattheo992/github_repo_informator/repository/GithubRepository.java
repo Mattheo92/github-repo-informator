@@ -1,4 +1,4 @@
-package com.Mattheo992.github_repo_informator;
+package com.Mattheo992.github_repo_informator.repository;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Getter;
