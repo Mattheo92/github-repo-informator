@@ -8,5 +8,5 @@ import org.springframework.web.bind.annotation.PathVariable;
 public interface GithubClient {
 
     @GetMapping("/repos/{owner}/{repo}")
-GithubRepository getRepository(@PathVariable("owner") String owner, @PathVariable("repo") String repo);
+    GithubRepository getRepository(@PathVariable("owner") String owner, @PathVariable("repo") String repo);
 }

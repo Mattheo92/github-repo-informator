@@ -3,10 +3,9 @@ package com.Mattheo992.github_repo_informator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Getter;
 import org.springframework.stereotype.Repository;
-import org.springframework.web.bind.annotation.GetMapping;
-
 
 import java.util.Date;
+
 @Getter
 @Repository
 public class GithubRepository {

@@ -8,8 +8,8 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
 @EnableFeignClients
 public class GithubRepoInformatorApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(GithubRepoInformatorApplication.class, args);
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(GithubRepoInformatorApplication.class, args);
+    }
 
 }

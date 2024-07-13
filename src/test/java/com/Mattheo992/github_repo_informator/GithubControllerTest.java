@@ -29,10 +29,11 @@ public class GithubControllerTest {
 
     @MockBean
     GithubRepository githubRepository;
+
     @Test
     public void testGetRepositoryDetails() throws Exception {
 
-        RepositoryDetails repositoryDetails1 = new RepositoryDetails ();
+        RepositoryDetails repositoryDetails1 = new RepositoryDetails();
         repositoryDetails1.setFullName("Mattheo992/MedicalClinic");
         repositoryDetails1.setCloneUrl("https://github.com/Mattheo992/MedicalClinic.git");
         repositoryDetails1.setStars(10);

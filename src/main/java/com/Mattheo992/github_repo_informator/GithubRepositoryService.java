@@ -1,7 +1,6 @@
 package com.Mattheo992.github_repo_informator;
 
 import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -18,7 +17,7 @@ public class GithubRepositoryService {
     public RepositoryDetails getRepositoryDetails(String owner, String repo) {
         GithubRepository githubRepository = githubClient.getRepository(owner, repo);
 
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
 
         LocalDateTime createdAtDateTime = githubRepository.getCreatedAt().toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime();
         String formattedDate = createdAtDateTime.format(formatter);
