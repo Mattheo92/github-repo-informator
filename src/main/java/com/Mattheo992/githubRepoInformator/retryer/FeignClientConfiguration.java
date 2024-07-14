@@ -1,6 +1,6 @@
 package com.Mattheo992.githubRepoInformator.retryer;
 
-import com.Mattheo992.githubRepoInformator.decoder.CustomErrorDecoder;
+import com.Mattheo992.githubRepoInformator.decoder.RetreiveMessageErrorDecoder;
 import feign.Retryer;
 import feign.codec.ErrorDecoder;
 import org.springframework.context.annotation.Bean;
@@ -16,6 +16,6 @@ public class FeignClientConfiguration {
 
     @Bean
     public ErrorDecoder errorDecoder() {
-        return new CustomErrorDecoder();
+        return new RetreiveMessageErrorDecoder();
     }
 }

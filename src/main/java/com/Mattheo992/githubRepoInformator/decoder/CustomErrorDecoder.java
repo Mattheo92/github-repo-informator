@@ -1,10 +1,8 @@
 package com.Mattheo992.githubRepoInformator.decoder;
 
-
 import feign.Response;
 import feign.RetryableException;
 import feign.codec.ErrorDecoder;
-
 
 public class CustomErrorDecoder implements ErrorDecoder {
 
@@ -17,7 +15,7 @@ public class CustomErrorDecoder implements ErrorDecoder {
                     response.status(),
                     "Sorry, but service is unavailable now",
                     response.request().httpMethod(),
-                    50L,
+                    3000L,
                     response.request());
         }
         return feign.FeignException.errorStatus(methodKey, response);

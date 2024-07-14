@@ -14,7 +14,6 @@ import java.time.LocalDateTime;
 @Getter
 public class GithubRepository {
 
-
     @JsonProperty("full_name")
     private String fullName;
 
