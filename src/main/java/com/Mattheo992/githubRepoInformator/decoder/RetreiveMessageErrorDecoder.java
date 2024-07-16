@@ -24,7 +24,12 @@ public class RetreiveMessageErrorDecoder implements ErrorDecoder {
                     message = exceptionMessage.getMessage();
                 }
             } catch (IOException e) {
-                return new Exception(e.getMessage());
+                return new RetryableException(
+                        response.status(),
+                        message,
+                        response.request().httpMethod(),
+                        Date.from(Instant.now().plusMillis(5000)),
+                        response.request());
             }
             return new RetryableException(
                     response.status(),
