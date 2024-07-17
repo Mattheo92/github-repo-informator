@@ -38,7 +38,6 @@ public class GithubClientIntegrationTest {
     @BeforeAll
     public static void setup() {
         wireMockServer = new WireMockServer(8081);
-        wireMockServer.start();
         WireMock.configureFor("localhost", 8081);
     }
 
@@ -50,13 +49,9 @@ public class GithubClientIntegrationTest {
                 .build();
     }
 
-    @AfterAll
-    public static void teardown() {
-        wireMockServer.stop();
-    }
-
     @Test
     public void GithubTestWithStatus200() throws Exception {
+        wireMockServer.start();
         GithubRepository githubRepository = new GithubRepository();
         githubRepository.setFullName("testowner/testrepo");
         githubRepository.setDescription("test");
@@ -76,10 +71,12 @@ public class GithubClientIntegrationTest {
         assertEquals("testowe", repository.getCloneUrl());
         assertEquals(1, repository.getStars());
         assertEquals(LocalDateTime.parse("2023-01-01T00:00:00"), repository.getCreatedAt());
+        wireMockServer.stop();
     }
 
     @Test
     public void retryerTestFor503Error() throws Exception {
+        wireMockServer.start();
         wireMockServer.stubFor(get(urlEqualTo("/repos/testowner/testrepo"))
                 .willReturn(aResponse()
                         .withStatus(503)
@@ -91,5 +88,6 @@ public class GithubClientIntegrationTest {
         });
 
         assertEquals("Sorry, but service is unavailable now", exception.getMessage());
+        wireMockServer.stop();
     }
 }
