@@ -8,11 +8,9 @@ import com.github.tomakehurst.wiremock.client.WireMock;
 import feign.RetryableException;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.cloud.openfeign.FeignClientBuilder;
 import org.springframework.context.ApplicationContext;
 
 import java.time.LocalDateTime;
@@ -39,19 +37,16 @@ public class GithubClientIntegrationTest {
     public static void setup() {
         wireMockServer = new WireMockServer(8081);
         WireMock.configureFor("localhost", 8081);
+        wireMockServer.start();
     }
 
-    @BeforeEach
-    public void setupClient() {
-        FeignClientBuilder feignClientBuilder = new FeignClientBuilder(context);
-        githubClient = feignClientBuilder.forType(GithubClient.class, "githubClient")
-                .url("http://localhost:8081")
-                .build();
+    @AfterAll
+    public static void end(){
+        wireMockServer.stop();
     }
 
     @Test
     public void GithubTestWithStatus200() throws Exception {
-        wireMockServer.start();
         GithubRepository githubRepository = new GithubRepository();
         githubRepository.setFullName("testowner/testrepo");
         githubRepository.setDescription("test");
@@ -71,12 +66,10 @@ public class GithubClientIntegrationTest {
         assertEquals("testowe", repository.getCloneUrl());
         assertEquals(1, repository.getStars());
         assertEquals(LocalDateTime.parse("2023-01-01T00:00:00"), repository.getCreatedAt());
-        wireMockServer.stop();
     }
 
     @Test
     public void retryerTestFor503Error() throws Exception {
-        wireMockServer.start();
         wireMockServer.stubFor(get(urlEqualTo("/repos/testowner/testrepo"))
                 .willReturn(aResponse()
                         .withStatus(503)
@@ -88,6 +81,5 @@ public class GithubClientIntegrationTest {
         });
 
         assertEquals("Sorry, but service is unavailable now", exception.getMessage());
-        wireMockServer.stop();
     }
 }

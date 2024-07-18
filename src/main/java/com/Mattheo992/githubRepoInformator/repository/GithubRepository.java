@@ -24,7 +24,7 @@ public class GithubRepository {
     private String cloneUrl;
 
     @JsonProperty("stargazers_count")
-    private int stars;
+    private Integer stars;
 
     @JsonProperty("created_at")
     private LocalDateTime createdAt;

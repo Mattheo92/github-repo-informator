@@ -9,9 +9,6 @@ public class GithubClientFallback implements GithubClient {
 
     @Override
     public GithubRepository getRepository(String owner, String repo) {
-        GithubRepository fallbackRepository = new GithubRepository();
-        fallbackRepository.setFullName("Sorry but repository not found");
-        fallbackRepository.setDescription("This repository does not exist or is unavailable");
-        return fallbackRepository;
+        throw new RuntimeException("Repository not found or repository is unavailable");
     }
 }

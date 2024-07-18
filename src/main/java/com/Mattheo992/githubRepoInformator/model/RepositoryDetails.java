@@ -13,6 +13,6 @@ public class RepositoryDetails {
     private String fullName;
     private String description;
     private String cloneUrl;
-    private int stars;
+    private Integer stars;
     private String createdAt;
 }

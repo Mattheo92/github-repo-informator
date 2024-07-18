@@ -2,6 +2,7 @@ package com.Mattheo992.githubRepoInformator.decoder;
 
 import com.Mattheo992.githubRepoInformator.handler.exceptions.ExceptionMessage;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import feign.FeignException;
 import feign.Response;
 import feign.RetryableException;
 import feign.codec.ErrorDecoder;
@@ -12,7 +13,7 @@ import java.time.Instant;
 import java.util.Date;
 
 public class RetreiveMessageErrorDecoder implements ErrorDecoder {
-
+    private final ErrorDecoder errorDecoder = new Default();
     @Override
     public Exception decode(String methodKey, Response response) {
         if (response.status() == 503) {
@@ -24,12 +25,7 @@ public class RetreiveMessageErrorDecoder implements ErrorDecoder {
                     message = exceptionMessage.getMessage();
                 }
             } catch (IOException e) {
-                return new RetryableException(
-                        response.status(),
-                        message,
-                        response.request().httpMethod(),
-                        Date.from(Instant.now().plusMillis(5000)),
-                        response.request());
+                return new Exception(e.getMessage());
             }
             return new RetryableException(
                     response.status(),
@@ -38,6 +34,6 @@ public class RetreiveMessageErrorDecoder implements ErrorDecoder {
                     Date.from(Instant.now().plusMillis(5000)),
                     response.request());
         }
-        return new ErrorDecoder.Default().decode(methodKey, response);
+        return errorDecoder.decode(methodKey, response);
     }
 }
