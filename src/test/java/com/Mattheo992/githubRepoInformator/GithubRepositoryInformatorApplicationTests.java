@@ -1,10 +1,10 @@
-package com.Mattheo992.github_repo_informator;
+package com.Mattheo992.githubRepoInformator;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class GithubRepoInformatorApplicationTests {
+class GithubRepositoryInformatorApplicationTests {
 
 	@Test
 	void contextLoads() {
